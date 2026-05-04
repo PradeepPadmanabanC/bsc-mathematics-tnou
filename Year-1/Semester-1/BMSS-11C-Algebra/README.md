@@ -6,12 +6,9 @@
 ## Syllabus Topics
 
 ### Block 1 — Polynomial Equations
-- [ ] Polynomial equations
-- [ ] Imaginary and irrational roots
-- [ ] Relation between roots and coefficients
-- [ ] Symmetric functions of roots in terms of coefficients
-- [ ] Transformations of equations
-- [ ] Reciprocal equations
+- [ ] Relationship between Roots and Coefficients
+- [ ] Symmetric Function of the Roots
+- [ ] Transformation of equations
 
 ### Block 2 — Roots & Series
 - [ ] Increase or decrease the roots of a given equation
