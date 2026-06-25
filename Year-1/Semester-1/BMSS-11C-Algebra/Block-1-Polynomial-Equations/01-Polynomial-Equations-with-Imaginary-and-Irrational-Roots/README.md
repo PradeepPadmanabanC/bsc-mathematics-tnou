@@ -1,4 +1,4 @@
-# Relationship between Roots and Coefficients
+# Polynomial Equations with Imaginary and Irrational Roots
 
 **Block:** 1 — Polynomial Equations  
 **Course:** BMSS-11C — Algebra
@@ -28,18 +28,12 @@
     - [Part (b): Proof](#part-b-proof-that-a--b-gives-four-conjugate-roots)
     - [Important Remarks](#important-remarks-2)
     - [Worked Examples](#worked-examples)
-  - [Relations between the Roots and Coefficients of Equations](#relations-between-the-roots-and-coefficients-of-equations)
-    - [Summary of Relations](#summary-of-relations)
-    - [Remark 1.1: Choosing Roots for Special Progressions](#remark-11-choosing-roots-for-special-progressions)
-    - [Proof: Roots in H.P. ⟹ Roots of f(1/x) are in A.P.](#proof-roots-in-hp--roots-of-f1x--0-are-in-ap)
 - [Examples](#examples)
 - [Real-World Applications](#real-world-applications)
   - [Factor Theorem & Fundamental Theorem of Algebra](#factor-theorem--fundamental-theorem-of-algebra)
   - [Location of Roots Theorem (IVT)](#location-of-roots-theorem-ivt)
   - [Complex Conjugate Root Theorem](#complex-conjugate-root-theorem)
   - [Irrational Conjugate Root Theorem](#irrational-conjugate-root-theorem)
-  - [Relations between Roots and Coefficients (Vieta's Formulas)](#relations-between-roots-and-coefficients-vietas-formulas)
-  - [Roots in Progressions (A.P., G.P., H.P.)](#roots-in-progressions-ap-gp-hp)
 - [Practice Problems](#practice-problems)
 
 ---
@@ -47,6 +41,12 @@
 ## Notes
 
 ### Factor Theorem
+
+#### History
+
+The Factor Theorem is closely tied to **Euclid's Division Algorithm** (circa 300 BCE), which established the principles of polynomial division. However, the theorem in its modern form was articulated much later. **Étienne Bézout** (1730–1783) is often credited with clearly formalizing the connection between roots and factors — the result that dividing f(x) by (x − α) leaves remainder f(α) is sometimes called Bézout's theorem (the polynomial version). The underlying division algorithm for polynomials was refined throughout the 17th and 18th centuries as algebra matured into a systematic discipline.
+
+---
 
 **Statement:**
 Let f(x) = a₀xⁿ + a₁xⁿ⁻¹ + a₂xⁿ⁻² + ... + aₙ₋₁x + aₙ be a polynomial of degree n, where a₀ ≠ 0.
@@ -117,6 +117,12 @@ If (x − α) is a factor of f(x), then α is a root of f(x) = 0.
 ---
 
 ### Fundamental Theorem: An nᵗʰ Degree Equation Has Exactly n Roots
+
+#### History
+
+The idea that every polynomial of degree n has exactly n roots has a long and contested history. **Albert Girard** (1595–1632) was the first to conjecture this in 1629, asserting that equations admit as many solutions as the degree indicates — provided one allows "impossible" (complex) solutions. **d'Alembert** attempted the first proof in 1746 (the theorem is still called "le théorème de d'Alembert" in French). **Euler** and **Lagrange** gave partial proofs in the mid-1700s. **Carl Friedrich Gauss** provided the first rigorous proof in his 1799 doctoral dissertation, and eventually produced four different proofs over his lifetime. Fully rigorous proofs emerged with the development of complex analysis in the 19th century through the work of Argand, Cauchy, and later topological arguments.
+
+---
 
 **Statement:**
 Every polynomial equation of degree n,
@@ -203,6 +209,12 @@ The roots α₁, α₂, ..., αₙ need not all be distinct. If αᵢ appears m 
 
 ### Location of Roots Theorem (Intermediate Value Theorem for Polynomials)
 
+#### History
+
+**Bernard Bolzano** (1817) was the first to state and attempt a rigorous proof that a continuous function changing sign on an interval must have a zero within that interval. His work was largely ignored during his lifetime. **Augustin-Louis Cauchy** independently proved a version in 1821. The rigorous foundations of continuity and limits required for a complete proof were later established by **Karl Weierstrass** in the 1860s–1870s. The practical application of this idea for approximating roots (bracketing/bisection) is much older — ancient Chinese mathematicians (notably in the *Jiuzhang Suanshu*, circa 200 BCE) and Persian mathematicians like **al-Tusi** (13th century) used similar sign-change arguments to narrow down roots.
+
+---
+
 **Statement:**
 If f(x) is a polynomial and f(a) and f(b) are of **opposite signs** (i.e., one is positive and the other is negative), then at least one root of the equation f(x) = 0 lies between a and b.
 
@@ -277,6 +289,12 @@ So a root lies in **(0.2, 0.3)**.
 ---
 
 ### Complex Conjugate Root Theorem (Imaginary Roots Occur in Pairs)
+
+#### History
+
+This theorem's history parallels the development of complex numbers themselves. **Gerolamo Cardano** (1545) first encountered complex numbers while solving cubic equations but regarded them as meaningless. **Rafael Bombelli** (1572) gave the first systematic treatment of complex arithmetic, showing how to manipulate these "imaginary" quantities consistently. **Leonhard Euler** (18th century) formalized complex number algebra, including the conjugation properties that underpin the proof. The theorem became a standard result in the 18th century once the Fundamental Theorem of Algebra was accepted and mathematicians studied real-coefficient polynomials systematically — the realization that complex roots must pair off follows directly from the algebraic properties of conjugation that Euler codified.
+
+---
 
 **Statement:**
 If f(x) = a₀xⁿ + a₁xⁿ⁻¹ + ... + aₙ₋₁x + aₙ = 0 is a polynomial equation with **real coefficients** (a₀, a₁, ..., aₙ ∈ ℝ), and if a + ib (where b ≠ 0) is a root, then its complex conjugate a − ib is also a root.
@@ -364,6 +382,12 @@ The roots are −1 + 2i and −1 − 2i — a conjugate pair, exactly as the the
 ---
 
 ### Irrational Conjugate Root Theorem (Irrational Roots Occur in Pairs)
+
+#### History
+
+This theorem belongs to the development of **field theory** and **algebraic number theory**. The foundational ideas trace back to **Joseph-Louis Lagrange** (1770s), who studied the structure of polynomial roots and how their permutations relate to solvability. **Évariste Galois** (1811–1832) revolutionized the subject with what we now call Galois theory — the irrational conjugate root theorem is essentially a consequence of the fact that minimal polynomials over ℚ are irreducible, and all roots of an irreducible polynomial are algebraic conjugates. The linear independence arguments (e.g., that √a, √b, √(ab) are linearly independent over ℚ) were formalized in the 19th century as the theory of algebraic field extensions matured through the work of **Dedekind**, **Kronecker**, and **Steinitz**.
+
+---
 
 **Statement:**
 If f(x) = 0 is a polynomial equation with **rational coefficients**, then irrational roots involving square roots occur in conjugate pairs.
@@ -533,156 +557,6 @@ The roots are x = 1, 2, 3 — and each corresponding linear factor divides f(x),
 
 ---
 
-### Relations between the Roots and Coefficients of Equations
-
-Let f(x) = a₀xⁿ + a₁xⁿ⁻¹ + a₂xⁿ⁻² + ... + aₙ₋₁x + aₙ = 0 be an equation of degree n.
-
-If this equation has the roots α₁, α₂, α₃, ..., αₙ and in these roots, some of them may be repeated.
-
-∴ a₀xⁿ + a₁xⁿ⁻¹ + a₂xⁿ⁻² + ... + aₙ₋₁x + aₙ = a₀(x − α₁)(x − α₂)(x − α₃)...(x − αₙ)
-
-Expanding the right side:
-
-> = a₀[xⁿ − (α₁ + α₂ + ... + αₙ)xⁿ⁻¹ + (α₁α₂ + α₂α₃ + ... + αₙα₁)xⁿ⁻² + ... + (−1)ⁿ(α₁ · α₂ · α₃ ... αₙ)]
-
-**By equating the like powers of x, we get:**
-
-> a₁ = −a₀(α₁ + α₂ + ... + αₙ) ⟹ Σαᵢ = −a₁/a₀
-
-> a₂ = a₀(α₁α₂ + ... + αₙα₁) ⟹ Σαᵢαⱼ = a₂/a₀
-
-> a₃ = −a₀(α₁α₂α₃ + α₁α₃α₄ + ...) ⟹ Σαᵢαⱼαₖ = −a₃/a₀
-
-> ⋮
-
-> aₙ = (−1)ⁿ a₀(α₁α₂...αₙ) ⟹ α₁α₂...αₙ = (−1)ⁿ aₙ/a₀
-
----
-
-#### Summary of Relations
-
-Hence we have:
-
-| Symbol | Meaning | Formula |
-|--------|---------|---------|
-| S₁ | Sum of the roots | Σαᵢ = −a₁/a₀ |
-| S₂ | Sum of the product of roots taken two at a time | Σαᵢαⱼ = a₂/a₀ |
-| S₃ | Sum of the product of roots taken three at a time | Σαᵢαⱼαₖ = −a₃/a₀ |
-| ⋮ | ⋮ | ⋮ |
-| Sₙ | Product of all the roots | α₁α₂α₃...αₙ = (−1)ⁿ aₙ/a₀ |
-
-**General pattern:** Sₖ = (−1)ᵏ aₖ/a₀
-
----
-
-#### Remark 1.1: Choosing Roots for Special Progressions
-
-**(A) For the third degree equation:** ax³ + bx² + cx + d = 0
-
-| Progression | Roots to assume |
-|-------------|-----------------|
-| Arithmetic Progression (A.P.) | a − d, a, a + d |
-| Geometric Progression (G.P.) | a/r, a, ar |
-| Harmonic Progression (H.P.) | If f(x) = 0 has roots in H.P., then f(1/x) = 0 has roots in A.P. |
-
----
-
-#### Proof: Roots in H.P. ⟹ Roots of f(1/x) = 0 are in A.P.
-
-**Statement:**
-If the roots of f(x) = 0 are in Harmonic Progression (H.P.), then the roots of f(1/x) = 0 are in Arithmetic Progression (A.P.).
-
----
-
-**Preliminary: Definition of Harmonic Progression**
-
-A sequence of numbers h₁, h₂, h₃, ... is said to be in **Harmonic Progression** if and only if their reciprocals 1/h₁, 1/h₂, 1/h₃, ... are in **Arithmetic Progression**.
-
----
-
-**Proof:**
-
-**Step 1: Let the roots of f(x) = 0 be in H.P.**
-
-Suppose f(x) = 0 has roots α₁, α₂, α₃ which are in Harmonic Progression (taking the cubic case for concreteness).
-
-By the definition of H.P., this means:
-
-> 1/α₁, 1/α₂, 1/α₃ are in Arithmetic Progression.
-
-**Step 2: Find the roots of f(1/x) = 0**
-
-Consider the substitution x → 1/x. If α is a root of f(x) = 0, i.e., f(α) = 0, then for the equation f(1/x) = 0, we need:
-
-> f(1/x) = 0 ⟹ 1/x must be a root of f(t) = 0 ⟹ 1/x = α ⟹ x = 1/α
-
-Therefore, if α₁, α₂, α₃ are roots of f(x) = 0, then **1/α₁, 1/α₂, 1/α₃ are roots of f(1/x) = 0**.
-
-**Step 3: Conclude**
-
-From Step 1, we know 1/α₁, 1/α₂, 1/α₃ are in A.P.
-
-From Step 2, we know 1/α₁, 1/α₂, 1/α₃ are the roots of f(1/x) = 0.
-
-Therefore, the roots of f(1/x) = 0 are in **Arithmetic Progression**. ∎
-
----
-
-**Practical Application:**
-
-To solve a cubic equation whose roots are in H.P.:
-
-1. Replace x by 1/x in the given equation f(x) = 0 to get a new equation g(x) = f(1/x) = 0.
-2. The roots of g(x) = 0 are now in A.P.
-3. Assume the roots of g(x) = 0 as a − d, a, a + d.
-4. Use the relations between roots and coefficients to find a and d.
-5. The roots of the original equation are the reciprocals: 1/(a − d), 1/a, 1/(a + d).
-
----
-
-**Worked Example:**
-
-Solve 6x³ − 11x² + 6x − 1 = 0, given that the roots are in H.P.
-
-**Step 1:** Replace x by 1/x:
-
-> 6(1/x)³ − 11(1/x)² + 6(1/x) − 1 = 0
-
-> 6/x³ − 11/x² + 6/x − 1 = 0
-
-Multiply through by x³:
-
-> 6 − 11x + 6x² − x³ = 0
-
-> x³ − 6x² + 11x − 6 = 0
-
-**Step 2:** The roots of x³ − 6x² + 11x − 6 = 0 are in A.P. Assume them as a − d, a, a + d.
-
-**Step 3:** Sum of roots = (a − d) + a + (a + d) = 3a = −(−6)/1 = 6
-
-> ∴ a = 2
-
-**Step 4:** Product of roots = (a − d)(a)(a + d) = a(a² − d²) = 6/1 = 6
-
-> 2(4 − d²) = 6 ⟹ 4 − d² = 3 ⟹ d² = 1 ⟹ d = ±1
-
-**Step 5:** Roots of x³ − 6x² + 11x − 6 = 0 are: 1, 2, 3
-
-**Step 6:** Roots of the original equation are the reciprocals: **1, 1/2, 1/3** ✓
-
-(Verify: 1, 1/2, 1/3 — their reciprocals are 1, 2, 3 which are in A.P., so 1, 1/2, 1/3 are in H.P. ✓)
-
----
-
-**(B) For the biquadratic equation:** ax⁴ + bx³ + cx² + dx + e = 0
-
-| Progression | Roots to assume |
-|-------------|-----------------|
-| Arithmetic Progression (A.P.) | a − 3d, a − d, a + d, a + 3d |
-| Geometric Progression (G.P.) | a/r³, a/r, ar, ar³ |
-
----
-
 ## Real-World Applications
 
 ### Factor Theorem & Fundamental Theorem of Algebra
@@ -726,39 +600,6 @@ Multiply through by x³:
 
 **Material Science**
 - Crystal lattice calculations involve algebraic numbers (ratios of interatomic distances), and understanding which irrationals are algebraically linked helps predict material properties.
-
----
-
-### Relations between Roots and Coefficients (Vieta's Formulas)
-
-**Machine Learning & Statistics**
-- Principal Component Analysis (PCA) requires finding eigenvalues of a covariance matrix — which means solving the characteristic polynomial. Vieta's formulas give quick relationships: the sum of eigenvalues equals the trace, the product equals the determinant.
-
-**Economics & Game Theory**
-- Equilibrium analysis in multi-agent systems often reduces to solving polynomial systems. Vieta's relations let economists reason about aggregate behavior (sum/product of equilibria) without solving for each equilibrium individually.
-
-**Chemistry**
-- pH calculations, chemical equilibrium equations, and reaction kinetics often yield cubic or quartic polynomials. Vieta's formulas help verify solutions and understand how concentrations relate.
-
-**Orbital Mechanics**
-- Kepler's equation and trajectory calculations involve polynomial equations whose root relationships directly correspond to orbital parameters (period, eccentricity).
-
----
-
-### Roots in Progressions (A.P., G.P., H.P.)
-
-**Digital Signal Processing**
-- Filter design with equally spaced poles (A.P. of roots) creates linear-phase filters used in audio processing and telecommunications.
-
-**Finance**
-- Annuity and amortization calculations involve geometric progressions. When cash flows follow a G.P., the present value equation is a polynomial whose roots in G.P. simplify valuation.
-
-**Acoustics & Music**
-- Harmonic series (H.P.) directly relates to overtone frequencies in musical instruments. The mathematical structure of roots in H.P. mirrors how physical resonances are distributed.
-
----
-
-> **Common Thread:** Whenever a real-world system is modeled by a polynomial equation, these theorems tell you what kinds of solutions are possible, how to find them, and how they relate to the system's parameters — without necessarily solving the equation explicitly.
 
 ---
 
