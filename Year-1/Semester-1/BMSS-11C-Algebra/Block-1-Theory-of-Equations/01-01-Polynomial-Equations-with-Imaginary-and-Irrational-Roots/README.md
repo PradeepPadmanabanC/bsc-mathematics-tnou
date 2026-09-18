@@ -44,7 +44,7 @@
 
 #### History
 
-The Factor Theorem is closely tied to **Euclid's Division Algorithm** (circa 300 BCE), which established the principles of polynomial division. However, the theorem in its modern form was articulated much later. **Étienne Bézout** (1730–1783) is often credited with clearly formalizing the connection between roots and factors — the result that dividing f(x) by (x − α) leaves remainder f(α) is sometimes called Bézout's theorem (the polynomial version). The underlying division algorithm for polynomials was refined throughout the 17th and 18th centuries as algebra matured into a systematic discipline.
+The Factor Theorem is closely tied to **Euclid's Division Algorithm** (circa 300 BCE), which established the principles of division with remainders. The polynomial division algorithm and its connection to roots was developed gradually throughout the 17th and 18th centuries as algebra matured into a systematic discipline. The result that dividing f(x) by (x − α) leaves remainder f(α) follows directly from the polynomial division algorithm and became a standard result in algebra texts by the 18th century.
 
 ---
 
@@ -394,7 +394,7 @@ If f(x) = 0 is a polynomial equation with **rational coefficients**, then irrati
 
 **(a)** If a + √b is a root (where a, b are rational and √b is irrational), then a − √b is also a root.
 
-**(b)** If √a + √b is a root (where √a and √b are both irrational and √a, √b are independent), then all four combinations are roots:
+**(b)** If √a + √b is a root (where √a and √b are both irrational, and √a/√b is not rational), then all four combinations are roots:
 - √a + √b
 - √a − √b
 - −√a + √b
@@ -450,7 +450,7 @@ Therefore **a − √b is also a root** of f(x) = 0. ∎
 
 #### Part (b): Proof that √a + √b gives four conjugate roots
 
-Let f(x) be a polynomial with rational coefficients, and suppose α = √a + √b is a root, where a, b ∈ ℚ, √a and √b are both irrational, and √a/√b is also irrational (i.e., √a and √b are independent surds).
+Let f(x) be a polynomial with rational coefficients, and suppose α = √a + √b is a root, where a, b ∈ ℚ, √a and √b are both irrational, and √a/√b is not rational (meaning √a and √b are not rational multiples of each other).
 
 **Step 1: Substitute α = √a + √b into f(x) = 0**
 
@@ -468,7 +468,7 @@ where P, Q, R, S are all **rational numbers**.
 
 **Step 3: Show P = Q = R = S = 0**
 
-Since √a, √b, and √(ab) are all irrational and **linearly independent over ℚ** (no rational combination of them equals a rational number unless all coefficients are zero), we must have:
+Since √a, √b, and √(ab) are all irrational and **linearly independent over ℚ** (given that √a/√b is not rational, no non-trivial rational combination of {1, √a, √b, √(ab)} equals zero), we must have:
 
 > **P = 0, Q = 0, R = 0, S = 0**
 
@@ -496,7 +496,7 @@ Therefore all four values are roots of f(x) = 0. ∎
 
 1. The condition that coefficients are **rational** is essential. If coefficients are irrational, conjugate surd roots need not occur in pairs.
 2. Part (a) means irrational roots involving a single square root always come in **pairs**, so the number of such irrational roots is always **even**.
-3. Part (b) means irrational roots involving two independent square roots come in **groups of four**.
+3. Part (b) means irrational roots involving two independent square roots (where √a/√b is not rational) come in **groups of four**.
 4. These results extend naturally: if a root involves k independent square roots, it generates 2ᵏ conjugate roots.
 
 ---
@@ -586,20 +586,20 @@ The roots are x = 1, 2, 3 — and each corresponding linear factor divides f(x),
 - AC circuit analysis uses complex impedance. The poles and zeros of circuit transfer functions always come in conjugate pairs, which is why resonant frequencies are symmetric. This directly determines how circuits filter signals.
 
 **Vibration Analysis**
-- Mechanical systems (bridges, buildings, car suspensions) have characteristic equations whose complex roots represent oscillation frequencies and damping rates. Conjugate pairs guarantee that physical vibrations are real-valued.
+- Mechanical systems (bridges, buildings, car suspensions) have characteristic equations whose complex roots represent oscillation frequencies and damping rates. For example, roots λ = -2 ± 5i mean: oscillation at 5 rad/s (imaginary part) with exponential decay rate -2 (real part). Conjugate pairs guarantee that when combined mathematically, imaginary components cancel out, ensuring physical displacement remains real-valued and measurable.
 
 **Quantum Mechanics**
-- The wave equation solutions involve polynomials with real coefficients, so energy states and probability amplitudes respect the conjugate pairing structure.
+- Particles are described by complex-valued wave functions. When solving for allowed energy levels, we get polynomial equations with real coefficients (representing physical quantities like mass and potential energy). Observable quantities (energy, probability) must be real numbers. The conjugate root theorem ensures complex eigenvalues come in pairs, guaranteeing that measured energies and probabilities are always real-valued.
 
 ---
 
 ### Irrational Conjugate Root Theorem
 
 **Cryptography**
-- Minimal polynomials over ℚ (and finite fields) are fundamental to algebraic number theory, which underpins elliptic curve cryptography and lattice-based crypto schemes. The conjugate root structure determines the degree of field extensions used in key generation.
+- Modern encryption (elliptic curve cryptography, post-quantum lattice schemes) uses finite fields built from polynomials with irrational roots. The conjugate root theorem determines how many roots exist together, which sets the degree of field extensions. For example, adjoining √2 creates a degree-2 extension; adjoining √2 + √3 creates degree-4. This degree determines the field size and computational complexity of cryptographic operations.
 
 **Material Science**
-- Crystal lattice calculations involve algebraic numbers (ratios of interatomic distances), and understanding which irrationals are algebraically linked helps predict material properties.
+- Crystal structures have atoms in repeating 3D patterns. Interatomic distances often involve irrational numbers: in face-centered cubic metals (copper, gold), diagonal distances are a√2 and a√3 where a is the edge length. These irrationals are algebraically linked (conjugate roots of x² - 2 = 0, x² - 3 = 0). The conjugate structure determines crystal symmetries, cleavage planes, optical properties, and electronic band gaps.
 
 ---
 
