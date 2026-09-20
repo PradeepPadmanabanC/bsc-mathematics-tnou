@@ -1,169 +1,171 @@
+
 # Why the Characteristic Equation Coefficients Are Sums of Principal Minors
 
-This note answers a specific question: **why does the S₁, S₂, S₃, ... shortcut (trace, sum of 2×2 minors, sum of 3×3 minors, ..., determinant) always work, for a matrix of any size, not just 3×3?**
+**The question this answers:** you've learned the shortcut "S₁ = trace, S₂ = sum of 2×2 principal minors, S₃ = sum of 3×3 principal minors, ..., Sₙ = det(A)" for writing down the characteristic equation without full expansion. Why does this always work, for any size matrix?
 
-We'll build the proof up slowly: first by brute-force expanding small cases by hand, then generalizing.
+This note shows two different ways to see why. Both are given in plain steps with a worked 3×3 number example first, then the general idea.
 
-## The claim, stated precisely
+## The claim, in one line
 
-For an n×n matrix A, the characteristic polynomial |A − λI| always expands as
-
-```
-λⁿ − S₁λⁿ⁻¹ + S₂λⁿ⁻² − S₃λⁿ⁻³ + ... + (−1)ⁿSₙ = 0
-```
-
-where **Sₖ = the sum of all k×k principal minors of A**.
-
-A *principal minor* of size k is: pick any k of the n row indices, keep only those rows and the *same* columns, delete everything else, and take the determinant of what's left. (For example, in a 3×3 matrix, picking rows/columns {1,2} gives a 2×2 principal minor; there are 3 such choices: {1,2}, {1,3}, {2,3}.)
-
-Note: S₁ is just the trace (each "1×1 principal minor" is a single diagonal entry a_ii), and Sₙ is just det(A) (the only n×n principal minor is the whole matrix).
-
-## Step 1: Work out n = 2 completely by hand
+For an n×n matrix A:
 
 ```
-        ┌ a₁₁−λ    a₁₂  ┐
-A − λI = │                │
-        └ a₂₁    a₂₂−λ  ┘
+det(A − λI) = λⁿ − S₁λⁿ⁻¹ + S₂λⁿ⁻² − S₃λⁿ⁻³ + ... + (−1)ⁿSₙ
 ```
 
-Determinant of a 2×2 matrix is (top-left × bottom-right) − (top-right × bottom-left):
+**Sₖ = add up the determinants of every k×k "principal minor."**
+
+A principal minor: pick k row numbers, keep only those rows AND those same-numbered columns, throw away everything else, take the determinant.
+
+Example, 3×3 matrix, picking rows/columns {1,2}: keep the top-left 2×2 block, ignore row 3 and column 3.
+
+- S₁ = a₁₁ + a₂₂ + a₃₃ (just the trace — each 1×1 "minor" is one diagonal entry)
+- Sₙ = det(A) (the only n×n principal minor is the whole matrix)
+
+## Proof 1: Just expand a 3×3 example and watch it happen
+
+Let's use an actual number matrix so nothing is hidden behind letters:
 
 ```
-|A − λI| = (a₁₁ − λ)(a₂₂ − λ) − a₁₂a₂₁
+    ┌ 2   1   0 ┐
+A = │ 1   3   1 │
+    └ 0   1   2 ┘
 ```
 
-Expand the product:
+We want det(A − λI):
 
 ```
-= a₁₁a₂₂ − a₁₁λ − a₂₂λ + λ² − a₁₂a₂₁
-= λ² − (a₁₁ + a₂₂)λ + (a₁₁a₂₂ − a₁₂a₂₁)
+        ┌ 2−λ    1     0  ┐
+A − λI = │  1    3−λ    1  │
+        └  0     1    2−λ ┘
 ```
 
-Compare this to the claimed form λ² − S₁λ + S₂:
-
-- **S₁ = a₁₁ + a₂₂** — that's the trace. ✓ (matches: sum of the two 1×1 principal minors, {1} and {2})
-- **S₂ = a₁₁a₂₂ − a₁₂a₂₁** — that's exactly det(A). ✓ (matches: the one 2×2 principal minor, the whole matrix)
-
-So for n=2, the formula is just... the direct expansion. Nothing hidden yet. The real content shows up at n=3.
-
-## Step 2: Work out n = 3 by hand, and watch S₂ appear
+**Expand along the first row** (this is just the ordinary 3×3 determinant recipe):
 
 ```
-        ┌ a₁₁−λ    a₁₂      a₁₃   ┐
-A − λI = │ a₂₁     a₂₂−λ     a₂₃   │
-        └ a₃₁      a₃₂     a₃₃−λ ┘
+det(A−λI) = (2−λ) · det[3−λ  1 ; 1  2−λ]  −  1 · det[1  1 ; 0  2−λ]  +  0
 ```
 
-Expand the determinant along the first row (ordinary cofactor expansion, the same technique you'd use for any 3×3 determinant):
+**First piece:** det[3−λ 1; 1 2−λ] = (3−λ)(2−λ) − 1 = λ² − 5λ + 5. Multiply by (2−λ):
 
 ```
-|A − λI| = (a₁₁−λ) · | a₂₂−λ   a₂₃  |   −  a₁₂ · | a₂₁   a₂₃  |   +  a₁₃ · | a₂₁   a₂₂−λ |
-                     | a₃₂    a₃₃−λ|            | a₃₁   a₃₃−λ|            | a₃₁    a₃₂   |
+(2−λ)(λ² − 5λ + 5) = 2λ² − 10λ + 10 − λ³ + 5λ² − 5λ = −λ³ + 7λ² − 15λ + 10
 ```
 
-This looks messy, but notice something important: **only the first cofactor (multiplying a₁₁−λ) contains any λ inside the 2×2 minor.** The other two cofactors — the ones multiplying the plain constants a₁₂ and a₁₃ — involve minors built from row 2, row 3, and *both* columns 1 and 3 (or 1 and 2), which never touches a diagonal position twice, so at most one λ can appear inside them, not two. Let's just carefully expand everything and collect powers of λ. This is tedious but mechanical — do it once and you'll trust the pattern forever.
+**Second piece:** −1 · [(1)(2−λ) − (1)(0)] = −1 · (2−λ) = λ − 2
 
-**Piece 1:** (a₁₁ − λ) · [(a₂₂−λ)(a₃₃−λ) − a₂₃a₃₂]
-
-First expand the inner 2×2 piece (same computation as Step 1, applied to the bottom-right 2×2 block):
+**Add them:**
 
 ```
-(a₂₂−λ)(a₃₃−λ) − a₂₃a₃₂ = λ² − (a₂₂+a₃₃)λ + (a₂₂a₃₃ − a₂₃a₃₂)
+det(A−λI) = −λ³ + 7λ² − 15λ + 10 + λ − 2 = −λ³ + 7λ² − 14λ + 8
 ```
 
-Now multiply by (a₁₁ − λ):
+Flip the overall sign to match the standard form (multiplying by −1 doesn't change the roots):
 
 ```
-(a₁₁ − λ)[λ² − (a₂₂+a₃₃)λ + (a₂₂a₃₃−a₂₃a₃₂)]
-
-= a₁₁λ² − a₁₁(a₂₂+a₃₃)λ + a₁₁(a₂₂a₃₃−a₂₃a₃₂)
-  − λ³ + (a₂₂+a₃₃)λ² − (a₂₂a₃₃−a₂₃a₃₂)λ
+λ³ − 7λ² + 14λ − 8 = 0
 ```
 
-Collect by power of λ:
+**Now check this against the shortcut directly, using the actual entries of A:**
 
-- **λ³:** −λ³
-- **λ²:** a₁₁λ² + (a₂₂+a₃₃)λ² = [a₁₁ + a₂₂ + a₃₃]λ²
-- **λ¹:** −a₁₁(a₂₂+a₃₃)λ − (a₂₂a₃₃−a₂₃a₃₂)λ = −[a₁₁a₂₂ + a₁₁a₃₃ + a₂₂a₃₃ − a₂₃a₃₂]λ
-- **λ⁰:** a₁₁(a₂₂a₃₃−a₂₃a₃₂)
+- **S₁ = trace = 2 + 3 + 2 = 7** ✓ matches the λ² coefficient.
+- **S₂ = sum of the three 2×2 principal minors:**
+  - rows/cols {1,2}: det[2 1; 1 3] = 6 − 1 = 5
+  - rows/cols {1,3}: det[2 0; 0 2] = 4 − 0 = 4
+  - rows/cols {2,3}: det[3 1; 1 2] = 6 − 1 = 5
+  - Sum: 5 + 4 + 5 = **14** ✓ matches the λ¹ coefficient.
+- **S₃ = det(A) = 2(6−1) − 1(2−0) + 0 = 10 − 2 = 8** ✓ matches the constant term.
 
-**Piece 2:** −a₁₂ · (a₂₁(a₃₃−λ) − a₂₃a₃₁) = −a₁₂a₂₁(a₃₃−λ) + a₁₂a₂₃a₃₁
-= −a₁₂a₂₁a₃₃ + a₁₂a₂₁λ + a₁₂a₂₃a₃₁
+Every number checks out. That's the whole point of the proof: **when you multiply out det(A − λI), the terms that survive at each power of λ are not random — they always regroup into exactly the principal minor sums.** The 3×3 example makes this concrete; the reason it keeps working for any size is explained next.
 
-- **λ¹:** a₁₂a₂₁λ
-- **λ⁰:** −a₁₂a₂₁a₃₃ + a₁₂a₂₃a₃₁
+### Why it keeps working for any n (the one idea to remember)
 
-**Piece 3:** a₁₃ · (a₂₁a₃₂ − (a₂₂−λ)a₃₁) = a₁₃a₂₁a₃₂ − a₁₃a₃₁a₂₂ + a₁₃a₃₁λ
+Look at what happened in the first piece above. We had (2−λ) times a 2×2 determinant. That 2×2 determinant itself split into a λ² term, a λ¹ term, and a constant — and the constant was already a 2×2 *principal* minor (the bottom-right block). Multiplying by (2−λ) then does two things:
 
-- **λ¹:** a₁₃a₃₁λ
-- **λ⁰:** a₁₃a₂₁a₃₂ − a₁₃a₃₁a₂₂
+- the "−λ" part shifts every one of those terms up by one power of λ,
+- the "2" part (a diagonal entry) adds that same principal minor pattern back in, unshifted.
 
-**Now add all three pieces together, power by power:**
+This is really the same trick as expanding (x + 2)(x + 3) by hand: you get x² + (2+3)x + (2·3), a mix of "both slots contribute x" and "one slot contributes the constant." Here, each diagonal slot (a_ii − λ) contributes either "−λ" or "a_ii" to the product, and whichever k slots contribute their constant a_ii (instead of −λ) determine which k×k principal minor shows up — except it's not just the product of those diagonal entries, it's the full minor determinant, because the off-diagonal numbers (like the 1's connecting rows 1 and 2 in our example) get pulled in too through the cofactor expansion. That's exactly what you saw in the arithmetic above: 5, 4, and 5 aren't just products of diagonal pairs (2·3=6, 2·2=4, 3·2=6) — the off-diagonal 1's shaved a bit off two of them (6→5, 6→5), because det[2 1; 1 3] = 6 − 1, not just 6.
 
-**λ³ coefficient:** −1 ✓ (matches the theorem's leading term)
+So the general rule is: **the coefficient of λⁿ⁻ᵏ is what's left over after picking, in every possible way, which k diagonal slots "hold still" (contribute a full principal minor) while the rest contribute −λ.** Trust the pattern from the worked example — a full symbolic proof of this for every n by induction is standard but mostly a longer, letter-only version of the exact same arithmetic you just did with numbers.
 
-**λ² coefficient:** a₁₁ + a₂₂ + a₃₃ — this is the **trace**, i.e., S₁. (Note the sign here is +S₁, not −S₁ — that's because this expansion of |A−λI| comes out as −λ³+S₁λ²−S₂λ+S₃ overall, i.e., −1 times the "textbook" form λ³−S₁λ²+S₂λ−S₃. Both describe the same equation once set to zero, since multiplying an equation by −1 doesn't change its roots — see the total below.)
+## Why this matches "sum of eigenvalues" and "product of eigenvalues"
 
-**λ¹ coefficient:** Adding Piece 1's λ¹ term with Piece 2 and Piece 3's λ¹ terms:
-
-```
-−[a₁₁a₂₂ + a₁₁a₃₃ + a₂₂a₃₃ − a₂₃a₃₂]  +  a₁₂a₂₁  +  a₁₃a₃₁
-= −a₁₁a₂₂ − a₁₁a₃₃ − a₂₂a₃₃ + a₂₃a₃₂ + a₁₂a₂₁ + a₁₃a₃₁
-= −(a₁₁a₂₂ − a₁₂a₂₁) − (a₁₁a₃₃ − a₁₃a₃₁) − (a₂₂a₃₃ − a₂₃a₃₂)
-```
-
-Look closely at each bracket: `(a₁₁a₂₂ − a₁₂a₂₁)` is exactly the 2×2 principal minor on rows/columns {1,2}. `(a₁₁a₃₃ − a₁₃a₃₁)` is the principal minor on {1,3}. `(a₂₂a₃₃ − a₂₃a₃₂)` is the principal minor on {2,3}. So the λ¹ coefficient is exactly **−(sum of all three 2×2 principal minors) = −S₂**.
-
-**λ⁰ coefficient:** Adding all three constant terms gives back exactly det(A) = S₃ (you can verify this matches the plain cofactor expansion of |A| along the first row — it's the same expression with λ=0 substituted from the start, which must be true since setting λ=0 in |A−λI| just gives |A|).
-
-**Putting it together for n=3:**
+The eigenvalues λ₁, λ₂, λ₃ are just the roots of that same cubic. Any cubic with roots r₁, r₂, r₃ can be written as (r₁−λ)(r₂−λ)(r₃−λ), and expanding that (ordinary school algebra) gives coefficients that are sums and products of the roots. Since this is the *same* polynomial as det(A−λI), written two different ways, the coefficients must agree term for term:
 
 ```
-|A − λI| = −λ³ + S₁λ² − S₂λ + S₃ = −(λ³ − S₁λ² + S₂λ − S₃)
+S₁ = trace(A) = λ₁ + λ₂ + λ₃  (sum of eigenvalues)
+S₃ = det(A)   = λ₁ · λ₂ · λ₃  (product of eigenvalues)
 ```
 
-Setting |A − λI| = 0 gives λ³ − S₁λ² + S₂λ − S₃ = 0, matching Example 10.7 exactly, and now you've seen with your own hands *why* S₂ turns out to be the sum of three specific 2×2 minors — it's not a coincidence or a rule to memorize, it just falls out of collecting terms after expanding the determinant.
+You can check this on the example above: the cubic λ³ − 7λ² + 14λ − 8 factors as (λ−1)(λ−2)(λ−4) — its eigenvalues are 1, 2, 4. Sum = 7 = S₁ ✓. Product = 8 = S₃ ✓.
 
-## Step 3: Why this keeps happening for any n (the general pattern)
+## Proof 2: The same result using derivatives (differentiate at λ = 0)
 
-Redo the n=3 computation, but pay attention to *where each type of term came from*, rather than the arithmetic:
+This is a completely different route to the same conclusion. Instead of multiplying everything out, we use one calculus fact about determinants, plug in λ = 0 (and its derivatives at 0), and the Sₖ's fall out directly — no expanding brackets at all.
 
-- The **λⁿ** term always comes from multiplying together all n diagonal factors (a_ii − λ) and taking only the λ from each — this is the only way to get λ to the highest power, since every off-diagonal entry a_ij (i≠j) is a plain constant with no λ in it at all.
-- The **λⁿ⁻¹** term comes from taking the λ from *all but one* of the diagonal factors, and the constant a_ii from the one you skip, then summing over which diagonal position you skipped. That produces Σᵢ a_ii = trace = S₁.
-- The **λⁿ⁻ᵏ** term, more generally, comes from taking the λ from (n−k) of the diagonal factors and "something else" from the remaining k diagonal positions. That "something else," when you track it through the expansion carefully (as we did by brute force for n=3), always turns out to be the determinant of the k×k principal submatrix sitting on those k skipped positions — not just the product of their diagonal entries, because the off-diagonal entries connecting those k skipped rows/columns also get pulled in through the cofactor expansion (this is exactly what happened with the a₁₂a₂₁ and a₂₃a₃₂ terms above — they came from off-diagonal entries, not diagonal ones, and they combined with diagonal products to form full 2×2 determinants, not just products of diagonal pairs).
+### The one calculus fact we need (Jacobi's formula)
 
-This is the crucial insight the brute-force n=3 case demonstrates: **the coefficient isn't just "sum of products of k diagonal entries" — it's "sum of determinants of k×k principal submatrices,"** because expanding the determinant naturally pulls in the off-diagonal cross terms (like a₁₂a₂₁) that turn a plain product into a proper minor.
-
-**A cleaner inductive way to see it holds for every n (once you trust the n=3 case):**
-
-Suppose the formula |M − λI| = Σₖ (−1)^k Sₖ(M) λ^(n−k) is already known to hold for every (n−1)×(n−1) matrix M (that's the induction hypothesis). Take your n×n matrix A and expand |A − λI| along the last row, cofactor-style, exactly as we did for n=3:
+For a matrix that changes with a variable, there's a known shortcut for differentiating its determinant:
 
 ```
-|A − λI| = (a_nn − λ) · |B − λI|   +   (terms from off-diagonal entries in the last row)
+d/dμ [det M(μ)]  =  trace( adj(M(μ)) · M'(μ) )
 ```
 
-where B is the (n−1)×(n−1) matrix obtained by deleting row n and column n from A (the top-left principal submatrix). By the induction hypothesis, |B − λI| already expands correctly in terms of the principal minors of B — and every principal minor of B is automatically also a principal minor of A (just one that happens not to use row/column n). Multiplying by (a_nn − λ) does two things: the "−λ" part raises every power of λ by one (extending the pattern up to λⁿ), and the "a_nn" part adds in exactly the principal minors of A that *do* include index n at size one higher than before. The leftover off-diagonal terms from the last row (the ones like a₁₂a₂₁ we saw directly) combine, after further expansion, to add in the remaining principal minors that include index n paired with some other row/column but not through the diagonal alone.
+Don't worry about proving this here — treat it as a known tool (it comes from the product-rule expansion of a determinant along its rows). `adj(M)` is the **adjugate**: the matrix of cofactors, transposed. All we need from it is one fact: **the diagonal entries of adj(M) are exactly the principal minors of M, one size smaller.** Concretely, the (1,1) entry of adj(M) is the determinant you get by deleting row 1 and column 1 from M. Same for (2,2), (3,3), etc.
 
-Doing this bookkeeping fully (it's routine but long — see Horn & Johnson, *Matrix Analysis*, or any graduate linear algebra text, under "characteristic polynomial coefficients" or "elementary symmetric functions of eigenvalues") confirms that every principal minor of every size gets accounted for exactly once, completing the induction.
+### Set it up with μ instead of λ, so signs stay simple
 
-## Why this matches "sum of eigenvalues" and "product of eigenvalues" too
-
-If λ₁, ..., λₙ are the n roots of the characteristic polynomial (the eigenvalues), then by definition the polynomial also factors as
+Instead of A − λI, use A + μI (same idea, opposite sign convention, so every term comes out positive and easy to read):
 
 ```
-(λ₁ − λ)(λ₂ − λ)···(λₙ − λ)   [up to an overall sign to match the leading λⁿ term]
+q(μ) = det(A + μI)
 ```
 
-Expanding this factored form by ordinary algebra (the same way you'd expand (x−r₁)(x−r₂)(x−r₃) in a school algebra class) gives coefficients that are the **elementary symmetric polynomials** of λ₁,...,λₙ:
+At μ = 0 this is just det(A) = S₃ (using our example's n=3). We want the derivative rules to hand us S₂ and S₁ too.
 
-- coefficient of λⁿ⁻¹ ↔ λ₁+λ₂+...+λₙ (sum of eigenvalues)
-- coefficient of λ⁰ ↔ λ₁λ₂···λₙ (product of eigenvalues)
+### First derivative, evaluated at μ = 0, gives S₂
 
-Since this factored expansion and the principal-minor expansion above are two ways of writing the *same* polynomial |A−λI|, their coefficients must match term for term. That's why:
+Apply Jacobi's formula. Since M(μ) = A + μI, its derivative M'(μ) is just the identity matrix I, and multiplying by I does nothing:
 
 ```
-S₁ = trace(A) = sum of eigenvalues
-Sₙ = det(A) = product of eigenvalues
+q'(μ) = trace( adj(A + μI) )
 ```
 
-which is exactly properties 1 and 2 already stated in the main README, now justified from both directions — principal minors on one side, eigenvalues on the other, forced to agree because they're expanding the same polynomial.
+Now use the one fact from above: the diagonal entries of an adjugate are principal minors, one size smaller. For our 3×3 example, that means the three diagonal entries of adj(A + μI) are the three 2×2 principal minors of (A + μI) — and at μ = 0, those are exactly the three 2×2 principal minors of A we already computed by hand (5, 4, 5). Trace just adds the diagonal entries:
+
+```
+q'(0) = 5 + 4 + 5 = 14 = S₂ ✓
+```
+
+matching what we got by brute-force expansion earlier.
+
+### Second derivative, evaluated at μ = 0, gives 2×S₁ (divide by 2! to get S₁)
+
+Differentiate again. Each of the three terms from before is itself a small determinant, so Jacobi's formula applies to each one again, in the same way — trim it down one more size. This peels off *one more* index, and because there are two ways to reach any given 1×1 minor (e.g. "delete row/col 2, then delete row/col 3" or "delete row/col 3, then delete row/col 2" both leave just entry a₁₁), each diagonal entry a_ii gets counted twice:
+
+```
+q''(0) = 2 · (a₁₁ + a₂₂ + a₃₃) = 2 · 7 = 14
+```
+
+Divide by 2! = 2 (the standard Taylor-coefficient correction) to undo the double-counting:
+
+```
+q''(0)/2! = 14/2 = 7 = S₁ ✓
+```
+
+Again matches.
+
+### The general pattern
+
+Each time you differentiate, Jacobi's formula trims the matrix down by one more row/column, and the number of ways to reach a given smaller minor by peeling one index at a time is k! (a basic counting fact — k items can be removed one at a time in k! different orders). So dividing the k-th derivative by k! always exactly cancels the overcounting, and you land on Sₙ₋ₖ every time:
+
+```
+[k-th derivative of q at 0] / k!  =  Sₙ₋ₖ
+```
+
+That's the whole proof: differentiate det(A + μI) repeatedly, evaluate each derivative at 0, divide by the right factorial, and every Sₖ pops out — because Jacobi's formula keeps handing you smaller and smaller principal minors automatically, without ever multiplying out a single bracket.
+
+### Why bother with this second proof
+
+Proof 1 (expand and collect terms) is the direct, hands-on way — you multiply things out and the pattern is visible in the arithmetic itself. Proof 2 (differentiate) never expands anything; it leans entirely on one borrowed calculus fact (Jacobi's formula) plus one counting fact (k! orderings). It's shorter once you accept those two facts, and it explains *why* principal minors specifically show up — they're baked into the definition of a cofactor/adjugate from the start, rather than something you have to notice after expanding brackets.
