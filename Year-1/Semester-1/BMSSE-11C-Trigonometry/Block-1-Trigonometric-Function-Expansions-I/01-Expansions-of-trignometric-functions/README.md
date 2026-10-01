@@ -1,20 +1,14 @@
 # Expansions of cosⁿθ and sinⁿθ
 
-A complete study guide covering the theory, derivation, worked examples, historical context, and real-world applications of expanding powers of trigonometric functions into sums of sines and cosines of multiples of the angle.
+A complete study guide covering the theory, derivation, key observations, historical context, and real-world applications of expanding powers of trigonometric functions into sums of sines and cosines of multiples of the angle.
 
 ---
 
 ## Table of Contents
 
 1. [Notes](#notes)
-   - [Overview](#overview)
-   - [Mathematical Foundation](#mathematical-foundation)
-   - [Derivation of the General Method](#derivation-of-the-general-method)
-   - [Key Observations](#key-observations)
-2. [Examples](#examples)
-3. [Historical Background](#historical-background)
-4. [Real-World Applications](#real-world-applications)
-5. [Summary](#summary)
+2. [Historical Background](#historical-background)
+3. [Real-World Applications](#real-world-applications)
 
 ---
 
@@ -29,6 +23,8 @@ This transformation is essential because:
 - It linearizes powers, making integration and differentiation simpler.
 - It reveals harmonic structure in periodic phenomena.
 - It connects algebraic operations on complex numbers to trigonometric identities.
+
+The technique also extends to products of the form cosⁿθ · sinⁿθ, which can be expanded by combining the two standard substitutions.
 
 ### Mathematical Foundation
 
@@ -61,6 +57,14 @@ More generally, for any positive integer n:
 These identities are the bridge between powers of trigonometric functions and multiples of angles.
 
 ### Derivation of the General Method
+
+The PDF lists three substitutions:
+
+1. For cosⁿθ: consider (2 cos θ)ⁿ = (x + 1/x)ⁿ
+2. For sinⁿθ: consider (2i sin θ)ⁿ = (x − 1/x)ⁿ
+3. For cosⁿθ · sinⁿθ: consider the product (x + 1/x)ⁿ (x − 1/x)ⁿ
+
+We use the binomial theorem to expand each right-hand side.
 
 #### For cosⁿθ
 
@@ -95,6 +99,14 @@ Collecting terms of the form xᵏ − 1/xᵏ (for odd n) or xᵏ + 1/xᵏ (for e
 
 The powers of i simplify using i² = −1, i⁴ = 1, etc.
 
+#### For cosⁿθ · sinⁿθ
+
+We consider the product
+
+> (2 cos θ)ⁿ · (2i sin θ)ⁿ = (x + 1/x)ⁿ · (x − 1/x)ⁿ
+
+Simplifying the left side and expanding the right side via the binomial theorem allows us to convert products of powers into sums of sines and cosines of multiples of θ.
+
 ### Key Observations
 
 | Expression | Expansion Type | Condition |
@@ -102,130 +114,7 @@ The powers of i simplify using i² = −1, i⁴ = 1, etc.
 | cosⁿθ | Cosines of multiples of θ | Always |
 | sinⁿθ | Sines of multiples of θ | n odd |
 | sinⁿθ | Cosines of multiples of θ | n even |
-
----
-
-## Examples
-
-### Example 1: Expand cos⁵θ
-
-**Solution:**
-
-> (2 cos θ)⁵ = (x + 1/x)⁵
-
-> = x⁵ + 5x³ + 10x + 10/x + 5/x³ + 1/x⁵
-
-Collecting like powers:
-
-> = (x⁵ + 1/x⁵) + 5(x³ + 1/x³) + 10(x + 1/x)
-
-> 2⁵ cos⁵θ = 2 cos 5θ + 5(2 cos 3θ) + 10(2 cos θ)
-
-> 2⁵ cos⁵θ = 2[cos 5θ + 5 cos 3θ + 10 cos θ]
-
-Dividing both sides by 2:
-
-> 2⁴ cos⁵θ = cos 5θ + 5 cos 3θ + 10 cos θ
-
-> **cos⁵θ = 1/16 [cos 5θ + 5 cos 3θ + 10 cos θ]**
-
----
-
-### Example 2: Expand cos⁶θ
-
-**Solution:**
-
-> (2 cos θ)⁶ = (x + 1/x)⁶
-
-> = x⁶ + 6x⁴ + 15x² + 20 + 15/x² + 6/x⁴ + 1/x⁶
-
-Collecting like powers:
-
-> = (x⁶ + 1/x⁶) + 6(x⁴ + 1/x⁴) + 15(x² + 1/x²) + 20
-
-> 2⁶ cos⁶θ = 2 cos 6θ + 6(2 cos 4θ) + 15(2 cos 2θ) + 20
-
-> 2⁶ cos⁶θ = 2[cos 6θ + 6 cos 4θ + 15 cos 2θ + 10]
-
-Dividing both sides by 2:
-
-> 2⁵ cos⁶θ = cos 6θ + 6 cos 4θ + 15 cos 2θ + 10
-
-> **cos⁶θ = 1/32 [cos 6θ + 6 cos 4θ + 15 cos 2θ + 10]**
-
----
-
-### Example 3: Expand sin⁵θ
-
-**Solution:**
-
-> (2i sin θ)⁵ = (x − 1/x)⁵
-
-> = x⁵ − 5x³ + 10x − 10/x + 5/x³ − 1/x⁵
-
-Collecting like powers:
-
-> = (x⁵ − 1/x⁵) − 5(x³ − 1/x³) + 10(x − 1/x)
-
-> 2⁵ i⁵ sin⁵θ = 2i sin 5θ − 5(2i sin 3θ) + 10(2i sin θ)
-
-> 2⁵ i⁵ sin⁵θ = 2i[sin 5θ − 5 sin 3θ + 10 sin θ]
-
-Since i⁵ = i, dividing both sides by 2i:
-
-> 2⁴ sin⁵θ = sin 5θ − 5 sin 3θ + 10 sin θ
-
-> **sin⁵θ = 1/16 [sin 5θ − 5 sin 3θ + 10 sin θ]**
-
----
-
-### Example 4: Expand sin⁸θ
-
-**Solution:**
-
-> (2i sin θ)⁸ = (x − 1/x)⁸
-
-> = x⁸ − 8x⁶ + 28x⁴ − 56x² + 70 − 56/x² + 28/x⁴ − 8/x⁶ + 1/x⁸
-
-Collecting like powers:
-
-> = (x⁸ + 1/x⁸) − 8(x⁶ + 1/x⁶) + 28(x⁴ + 1/x⁴) − 56(x² + 1/x²) + 70
-
-> 2⁸ i⁸ sin⁸θ = 2 cos 8θ − 8(2 cos 6θ) + 28(2 cos 4θ) − 56(2 cos 2θ) + 70
-
-Since i⁸ = 1:
-
-> 2⁸ sin⁸θ = 2[cos 8θ − 8 cos 6θ + 28 cos 4θ − 56 cos 2θ + 35]
-
-Dividing both sides by 2:
-
-> 2⁷ sin⁸θ = cos 8θ − 8 cos 6θ + 28 cos 4θ − 56 cos 2θ + 35
-
-> **sin⁸θ = 1/2⁷ [cos 8θ − 8 cos 6θ + 28 cos 4θ − 56 cos 2θ + 35]**
-
----
-
-### Example 5: Expand sin⁹θ
-
-**Solution:**
-
-> (2i sin θ)⁹ = (x − 1/x)⁹
-
-> = x⁹ − 9x⁷ + 36x⁵ − 84x³ + 126x − 126/x + 84/x³ − 36/x⁵ + 9/x⁷ − 1/x⁹
-
-Collecting like powers:
-
-> = (x⁹ − 1/x⁹) − 9(x⁷ − 1/x⁷) + 36(x⁵ − 1/x⁵) − 84(x³ − 1/x³) + 126(x − 1/x)
-
-> 2⁹ i⁹ sin⁹θ = 2i sin 9θ − 9(2i sin 7θ) + 36(2i sin 5θ) − 84(2i sin 3θ) + 126(2i sin θ)
-
-> 2⁹ i⁹ sin⁹θ = 2i[sin 9θ − 9 sin 7θ + 36 sin 5θ − 84 sin 3θ + 126 sin θ]
-
-Since i⁹ = i, dividing both sides by 2i:
-
-> 2⁸ sin⁹θ = sin 9θ − 9 sin 7θ + 36 sin 5θ − 84 sin 3θ + 126 sin θ
-
-> **sin⁹θ = 1/2⁸ [sin 9θ − 9 sin 7θ + 36 sin 5θ − 84 sin 3θ + 126 sin θ]**
+| cosⁿθ · sinⁿθ | Sines or cosines of multiples | Depends on parity |
 
 ---
 
@@ -328,62 +217,3 @@ In signal processing, any periodic signal can be decomposed into its harmonic co
 - **NMR spectroscopy:** Radiofrequency pulses involve cos(ωt) and its powers in spin dynamics.
 
 **Example:** In Raman spectroscopy, the polarizability tensor involves cos²θ, which expands to give the Stokes and anti-Stokes lines.
-
----
-
-## Summary
-
-| Concept | Key Formula |
-|---|---|
-| De Moivre's Theorem | (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ |
-| cosⁿθ expansion | cosⁿθ = 1/2ⁿ⁻¹ · Σ C(n, k) · cos((n − 2k)θ) |
-| sinⁿθ (odd n) | sinⁿθ = (−1)^((n−1)/2) / 2ⁿ⁻¹ · Σ (−1)ᵏ C(n, k) · sin((n − 2k)θ) |
-| sinⁿθ (even n) | sinⁿθ = 1/2ⁿ⁻¹ · Σ (−1)ᵏ C(n, k) · cos((n − 2k)θ) |
-
-These expansions bridge algebra and trigonometry, providing a powerful tool with applications spanning signal processing, physics, engineering, and beyond.
-
----
-
-## Check Your Progress
-
-1. Prove that cos⁸θ = 1/2⁷ [cos 8θ + 8 cos 6θ + 28 cos 4θ + 56 cos 2θ + 35].
-
-2. Expand sin⁸θ in a series of cosines of multiples of θ.
-
-**Answer:**
-
-> sin⁸θ = 1/2⁷ [cos 8θ − 8 cos 6θ + 28 cos 4θ − 56 cos 2θ + 35]
-
----
-
-## Multiple Choice Questions
-
-1. In the expansions of cosⁿθ, the result must be in ...
-   - (a) cosines
-   - (b) sines if n is odd
-   - (c) cosines if n is even
-   - (d) none of these
-
-2. If x = cos θ + i sin θ, then x⁴ − 1/x⁴ = ...
-   - (a) 2 cos 4θ
-   - (b) 2i sin 4θ
-   - (c) 2⁴ sin 4θ
-   - (d) none of these
-
-3. If z = cos x + i sin x, then (z − 1/z)ⁿ = ...
-   - (a) 2ⁿ cos nθ
-   - (b) 2ⁿ sinⁿθ
-   - (c) 2ⁿ iⁿ sinⁿθ
-   - (d) none of these
-
-4. The result of 2³ cos⁴θ is
-   - (a) cos 4θ + 4 cos 2θ + 3
-   - (b) cos 4θ − 4 cos 2θ + 3
-   - (c) cos 4θ − 4 cos 2θ + 6
-   - (d) cos 4θ + 4 cos 2θ − 3
-
-**Answers:** (1) a  (2) b  (3) c  (4) a
-
----
-
-*End of Notes*
