@@ -1,3 +1,13 @@
+"""
+Setup:
+    python3 -m venv /tmp/venv
+    source /tmp/venv/bin/activate
+    pip install sympy numpy matplotlib
+
+Run:
+    python plot-distance.py
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 
